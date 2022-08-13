@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/loan-application-mern/static/js/main.dc8f1848.js",
-    "index.html": "/loan-application-mern/index.html",
-    "main.dc8f1848.js.map": "/loan-application-mern/static/js/main.dc8f1848.js.map"
+    "main.js": "/Loan-Application-MERN/static/js/main.dc8f1848.js",
+    "index.html": "/Loan-Application-MERN/index.html",
+    "main.dc8f1848.js.map": "/Loan-Application-MERN/static/js/main.dc8f1848.js.map"
   },
   "entrypoints": [
     "static/js/main.dc8f1848.js"
