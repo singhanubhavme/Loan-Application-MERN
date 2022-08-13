@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 
 const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
@@ -14,8 +15,15 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [err, setErr] = useState(false);
+
   const handleNext = () => {
-    if (firstName.match(/^[a-zA-Z]+$/) && lastName.match(/^[a-zA-Z]+$/) && age.match(/^[0-9]+$/) && email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && address.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/)) {
+    if (
+      firstName.match(/^[a-zA-Z]+$/) && 
+      lastName.match(/^[a-zA-Z]+$/) && 
+      age.match(/^[0-9]+$/) && 
+      email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && 
+      address.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/)
+      ) {
       setPersonalForm({ firstName, lastName, age, phone, email, address });
       setActiveStep(1);
     }
@@ -26,15 +34,19 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
 
   return (
     <React.Fragment>
+      
       <Typography variant="h6" gutterBottom>
         Personal Details
       </Typography>
+
       {err &&
         <Alert severity="error" sx={{ marginBottom: '1em' }}>
           Please Check all the form entries before clicking next!
         </Alert>
       }
+
       <Grid container spacing={3}>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -49,6 +61,7 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
             error={(firstName === "") ? false : firstName.match(/^[a-zA-Z]+$/) ? false : true}
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -61,9 +74,9 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
             onChange={(e) => setLastName(e.target.value)}
             helperText={(lastName === "") ? "This field cannot be empty" : ""}
             error={(lastName === "") ? false : lastName.match(/^[a-zA-Z]+$/) ? false : true}
-
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -123,7 +136,9 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
             error={(address === "") ? false : address.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/) ? false : true}
           />
         </Grid>
+
       </Grid>
+
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
           variant="contained"
@@ -133,6 +148,7 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
           Next
         </Button>
       </Box>
+
     </React.Fragment>
   );
 }

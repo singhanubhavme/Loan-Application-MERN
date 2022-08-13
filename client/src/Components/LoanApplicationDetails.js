@@ -23,6 +23,7 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
       label: 'Others'
     }
   ];
+
   const [loanType, setLoanType] = useState("");
   const [loanAmount, setLoanAmount] = useState("");
   const [interestRate, setInterestRate] = useState("");
@@ -30,7 +31,12 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
   const [err, setErr] = useState(false);
 
   const handleSubmit = () => {
-    if (loanAmount.match(/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/) && interestRate.match(/^[+]?([0-9]+\.?[0-9]*|\.[0-9]+)$/) && loanTenure.match(/^[0-9]+$/) && (loanType !== "")) {
+    if (
+      loanAmount.match(/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/) &&
+      interestRate.match(/^[+]?([0-9]+\.?[0-9]*|\.[0-9]+)$/) &&
+      loanTenure.match(/^[0-9]+$/) &&
+      loanType !== ""
+    ) {
       setApplicationForm({ loanType, loanAmount, interestRate, loanTenure });
       setActiveStep(3);
       setSubmit(true);
@@ -38,17 +44,22 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
       setErr(true);
     }
   }
+
   return (
     <React.Fragment>
+
       <Typography variant="h6" gutterBottom>
         Loan Details
       </Typography>
+
       {err &&
         <Alert severity="error" sx={{ marginBottom: '1em' }}>
           Please Check all the form entries before Submitting!
         </Alert>
       }
+
       <Grid container spacing={3}>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -56,13 +67,16 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
             label="Loan Amount"
             fullWidth
             variant="standard"
-
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
             helperText={(loanAmount === "") ? "This field cannot be empty" : ""}
-            error={(loanAmount === "") ? false : loanAmount.match(/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/) ? false : true}
+            error={(loanAmount === "") ?
+              false : loanAmount.match(/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/) ?
+                false : true
+            }
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -73,7 +87,10 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
             value={interestRate}
             onChange={(e) => setInterestRate(e.target.value)}
             helperText={(interestRate === "") ? "This field cannot be empty" : ""}
-            error={(interestRate === "") ? false : interestRate.match(/^[+]?([0-9]+\.?[0-9]*|\.[0-9]+)$/) ? false : true}
+            error={(interestRate === "") ?
+              false : interestRate.match(/^[+]?([0-9]+\.?[0-9]*|\.[0-9]+)$/) ?
+                false : true
+            }
           />
         </Grid>
 
@@ -87,9 +104,13 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
             value={loanTenure}
             onChange={(e) => setLoanTenure(e.target.value)}
             helperText={(loanTenure === "") ? "This field cannot be empty" : ""}
-            error={(loanTenure === "") ? false : loanTenure.match(/^[0-9]+$/) ? false : true}
+            error={(loanTenure === "") ?
+              false : loanTenure.match(/^[0-9]+$/) ?
+                false : true
+            }
           />
         </Grid>
+
         <Grid item xs={12} md={6}>
           <TextField
             id="select-loan-type"
@@ -105,9 +126,12 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
                 {option.label}
               </MenuItem>
             ))}
+
           </TextField>
         </Grid>
+
       </Grid>
+
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button onClick={() => setActiveStep(1)} sx={{ mt: 3, ml: 1 }}>
           Back
@@ -120,6 +144,7 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
           Submit
         </Button>
       </Box>
+      
     </React.Fragment>
   );
 }

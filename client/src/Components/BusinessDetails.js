@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 
 const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
+
   const [businessName, setBusinessName] = useState("");
   const [gstNumber, setGstNumber] = useState("");
   const [businessPhone, setBusinessPhone] = useState("");
@@ -15,7 +16,13 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
   const [err, setErr] = useState(false);
 
   const handleNext = () => {
-    if (businessName.match(/^[a-z A-Z 0-9-]+$/) && gstNumber.trim().length === 15 && businessPhone.match(/^[0-9+ ]+$/) && businessPhone.length > 7 && businessEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && businessAddress.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/)) {
+    if (
+      businessName.match(/^[a-z A-Z 0-9-]+$/) && 
+      gstNumber.trim().length === 15 && 
+      businessPhone.match(/^[0-9+ ]+$/) && businessPhone.length > 7 && 
+      businessEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && 
+      businessAddress.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/)
+      ) {
       setBusinessForm({ businessName, gstNumber, businessPhone, businessEmail, businessAddress });
       setActiveStep(2);
     }
@@ -23,17 +30,21 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
       setErr(true);
     }
   }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Business Details
       </Typography>
+
       {err &&
         <Alert severity="error" sx={{ marginBottom: '1em' }}>
           Please Check all the form entries before clicking next!
         </Alert>
       }
+
       <Grid container spacing={3}>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -47,6 +58,7 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
             error={(businessName === "") ? false : businessName.match(/^[a-z A-Z 0-9-]+$/) ? false : true}
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -74,6 +86,7 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
             error={(businessPhone === "") ? false : businessPhone.match(/^[0-9+ ]+$/) && businessPhone.length > 7 ? false : true}
           />
         </Grid>
+
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -87,6 +100,7 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
             error={(businessEmail === "") ? false : businessEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? false : true}
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -101,7 +115,9 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
             error={(businessAddress === "") ? false : businessAddress.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/) ? false : true}
           />
         </Grid>
+
       </Grid>
+
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button onClick={() => setActiveStep(0)} sx={{ mt: 3, ml: 1 }}>
           Back
@@ -114,6 +130,7 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
           Next
         </Button>
       </Box>
+      
     </React.Fragment>
   );
 }

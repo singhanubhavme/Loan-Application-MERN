@@ -94,6 +94,7 @@ const LoanApplication = () => {
             ))}
 
           </Stepper>
+
           {
             error && 
             <Alert severity="error" sx={{ marginBottom: '1em' }}>
@@ -110,6 +111,7 @@ const LoanApplication = () => {
               Form Submitted <strong> Successfully!!</strong>
           </Alert>
           }
+          
         </Paper>
       </Container>
     </ThemeProvider>
