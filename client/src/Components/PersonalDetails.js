@@ -21,6 +21,7 @@ const PersonalDetails = ({ setPersonalForm, setActiveStep }) => {
       firstName.match(/^[a-zA-Z]+$/) && 
       lastName.match(/^[a-zA-Z]+$/) && 
       age.match(/^[0-9]+$/) && 
+      phone.match(/^[0-9+ ]+$/) && phone.length > 7 &&
       email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && 
       address.match(/^[a-zA-Z0-9\s,.'-/]{3,}$/)
       ) {
