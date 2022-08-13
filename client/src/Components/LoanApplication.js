@@ -30,7 +30,7 @@ const LoanApplication = () => {
 
   useEffect(() => {
     if (submit) {
-      axios.post("http://localhost:3001/api/loanApplication", {
+      axios.post("http://20.198.109.74/api/loanApplication", {
         data: [personalForm, businessForm, applicationForm]
       })
         .then((data) => {
@@ -44,7 +44,6 @@ const LoanApplication = () => {
         })
     }
   });
-
 
   const getStepContent = (step) => {
     switch (step) {
@@ -96,22 +95,22 @@ const LoanApplication = () => {
           </Stepper>
 
           {
-            error && 
+            error &&
             <Alert severity="error" sx={{ marginBottom: '1em' }}>
               Cannot Submit the form, please try again later!!
             </Alert>
           }
           {!submitted &&
-             getStepContent(activeStep) 
+            getStepContent(activeStep)
           }
           {
             submitted &&
             <Alert severity="success">
               <AlertTitle>Success</AlertTitle>
               Form Submitted <strong> Successfully!!</strong>
-          </Alert>
+            </Alert>
           }
-          
+
         </Paper>
       </Container>
     </ThemeProvider>
