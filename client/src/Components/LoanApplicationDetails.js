@@ -28,6 +28,7 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
   const [loanAmount, setLoanAmount] = useState("");
   const [interestRate, setInterestRate] = useState("");
   const [loanTenure, setLoanTenure] = useState("");
+  
   const [err, setErr] = useState(false);
 
   const handleSubmit = () => {
@@ -39,7 +40,7 @@ const LoanApplicationDetails = ({ setApplicationForm, setActiveStep, setSubmit }
     ) {
       setApplicationForm({ loanType, loanAmount, interestRate, loanTenure });
       setActiveStep(3);
-      setSubmit(true);
+      setSubmit(true); // if on last step submit form
     } else {
       setErr(true);
     }

@@ -21,14 +21,17 @@ const theme = createTheme();
 
 const LoanApplication = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [submit, setSubmit] = useState(false);
+  const [submit, setSubmit] = useState(false); // to get submit state from child component
+
+  // form data from each child component to this component
   const [personalForm, setPersonalForm] = useState({});
   const [businessForm, setBusinessForm] = useState({});
   const [applicationForm, setApplicationForm] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const [submitted, setSubmitted] = useState(false); // to show message on submitted form
+  const [error, setError] = useState(false); // to show error on jsx
+
+  useEffect(() => { // check for submit on every rerender
     if (submit) {
       axios.post("http://20.198.109.74/api/loanApplication", {
         data: [personalForm, businessForm, applicationForm]
@@ -45,7 +48,7 @@ const LoanApplication = () => {
     }
   });
 
-  const getStepContent = (step) => {
+  const getStepContent = (step) => { // to show component based on step number (0, 1, 2)
     switch (step) {
       case 0:
         return (

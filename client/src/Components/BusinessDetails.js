@@ -13,10 +13,11 @@ const BusinessDetails = ({ setBusinessForm, setActiveStep }) => {
   const [businessPhone, setBusinessPhone] = useState("");
   const [businessEmail, setBusinessEmail] = useState("");
   const [businessAddress, setBusinessAddress] = useState("");
+
   const [err, setErr] = useState(false);
 
   const handleNext = () => {
-    if (
+    if ( // check all inputs before moving to next step
       businessName.match(/^[a-z A-Z 0-9-]+$/) && 
       gstNumber.trim().length === 15 && 
       businessPhone.match(/^[0-9+ ]+$/) && businessPhone.length > 7 && 

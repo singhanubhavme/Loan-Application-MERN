@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-app.use(cors({ origin: "*" })); // to fix cross origin errors
+app.use(cors({ origin: "*" })); // to allow cross origin resource sharing from everywhere
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
